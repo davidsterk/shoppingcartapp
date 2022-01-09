@@ -1,0 +1,32 @@
+<div id = "customerproducts">
+    <br>
+    <Label for="search">Product Search:&nbsp;&nbsp;</Label>
+    <input type="search" name="search" placeholder="Search Products" [(ngModel)]="searchTerm"> 
+    <button (click) = "productSearch()">Search</button>
+    <br>
+    <table>
+        <tr>
+            <th>Product Name</th>
+            <th>Product Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th></th>
+        </tr>
+        <tr *ngFor="let product of products">
+            <td>{{product.name}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.price | currency}}</td>
+            <td *ngIf="(product.quantity > 0); else elseBlock1">
+                <input type='number' [(ngModel)] = "product.quantityOrdered" min="1" max="{{product.quantity}}"></td>
+            <td *ngIf="(product.quantity > 0); else elseBlock2">
+                <button (click) = "updateCart(product)">Add to Cart</button>
+            </td>
+            <ng-template #elseBlock1>
+            <td style ="color:red">Item Not In Stock</td>
+        </ng-template>
+        <ng-template #elseBlock2>
+            <td></td>
+        </ng-template>
+        </tr>
+    </table>
+</div>

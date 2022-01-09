@@ -1,0 +1,8 @@
+<div id="form">
+        <label for="email">Email:&nbsp;&nbsp;</label>
+        <input type="email" [(ngModel)] = "email" required>
+        <label for="password">&nbsp;Password:&nbsp;&nbsp;</label>
+        <input type="password" [(ngModel)] = "password" required>
+        <button (click) = "checkLogin()">Login</button>
+    <p *ngIf="(message)">{{message}}</p>
+</div>

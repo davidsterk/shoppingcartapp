@@ -1,0 +1,20 @@
+<div id="register">
+
+    <label for="email">Email:&nbsp;&nbsp;</label>
+    <input name="email" type="email" [(ngModel)] = "form.email" required>
+    <span style="color:red">&nbsp;{{emailMessage}}</span><br><br>
+    <label for="password">&nbsp;Password:&nbsp;&nbsp;</label>
+    <input type="password" [(ngModel)] = "form.password" required minlength=8 maxlength="20" name="password">
+    <span style="color:red">&nbsp;{{passwordMessage}}</span><br><br>
+    <label for="verifypassword">&nbsp;Verify Password:&nbsp;&nbsp;</label>
+    <input type="password" [(ngModel)] = "form.verifyPassword" required minlength=8 maxlength="20" name="verifypassword">
+    <span style="color:red">&nbsp;{{verifyPasswordMessage}}</span><br><br>
+    <label for="firstname">&nbsp;First Name:&nbsp;&nbsp;</label>
+    <input type="text" [(ngModel)] = "form.firstName" required minlength=1 maxlength="20" name="firstname">
+    <span style="color:red">&nbsp;{{firstNameMessage}}</span><br><br>
+    <label for="lastname">&nbsp;Last Name:&nbsp;&nbsp;</label>
+    <input type="text" [(ngModel)] = "form.lastName" required minlength=1 maxlength="20" name="lastname">
+    <span style="color:red">&nbsp;{{lastNameMessage}}</span><br><br>
+    <button (click) = "submit()">Login</button>
+<p *ngIf="(message)">{{message}}</p>
+</div>

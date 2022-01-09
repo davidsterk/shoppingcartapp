@@ -1,0 +1,11 @@
+<nav class="navbar">
+    <a class="navlink" routerLink="/">Product Search&nbsp;&nbsp;</a>
+    <a routerLink="/customer/cart"  class="navlink">Cart&nbsp;&nbsp;</a>
+    <a *ngIf="(hasSession);" (click) = "signOff()" class="navlink">Sign Off&nbsp;&nbsp;</a>
+    <a *ngIf="(!hasSession);" routerLink="/login" class="navlink">Sign In&nbsp;&nbsp;</a>
+    <a *ngIf="(!hasSession);" routerLink="/register" class="navlink">Register&nbsp;&nbsp;</a>
+</nav>
+<br>
+<div *ngIf="(hasSession)">Welcome {{authenticatedUser.firstName}} {{authenticatedUser.lastName}}</div>
+<div *ngIf="(!hasSession)">Welcome Guest</div>
+<br>
