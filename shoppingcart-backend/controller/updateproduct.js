@@ -1,3 +1,6 @@
+/* 
+Updates existing product
+*/
 const ProductDB = require('../models/product.js');
 const Product = ProductDB.getModel();
 

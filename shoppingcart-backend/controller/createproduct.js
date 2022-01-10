@@ -1,4 +1,7 @@
-
+/* 
+Creates a Product in mongodb. Only allowed by users with admin role
+Returns the created product along with the url location
+*/
 const ProductDB = require('../models/product.js');
 const Product = ProductDB.getModel();
 

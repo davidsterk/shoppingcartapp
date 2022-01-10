@@ -1,4 +1,6 @@
-
+/*
+Retrieves the customer's cart
+*/
 const CartDB = require('../models/cart.js');
 const Cart = CartDB.getModel();
 
@@ -22,7 +24,7 @@ module.exports =  async(req, res) => {
     });
     res.format( {
         "application/json": () => {
-            res.json(results);
+            res.status(200).json(results);
         }
     });
 

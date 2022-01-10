@@ -1,3 +1,7 @@
+/* 
+user sign in. If authenicated generate a jwt token and send to client
+along with user id, firstname and lastname
+*/
 const UserDB = require('../models/user.js');
 const User = UserDB.getModel();
 const bcrypt = require('bcryptjs');

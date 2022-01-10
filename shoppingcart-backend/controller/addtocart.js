@@ -1,6 +1,10 @@
+/*
+Adds products to the customer's carts.
+If the product already exists in the cart, then update. 
+If quantity requested exceeds product quantity then do not update cart
+*/
 const productDB = require('../models/product.js')
 const CartDB = require('../models/cart.js');
-const Product = productDB.getModel();
 const Cart = CartDB.getModel();
 const {removeProductFromCart, addProductToCart, getProductFromCart} = require('../utils/cartutils')
 

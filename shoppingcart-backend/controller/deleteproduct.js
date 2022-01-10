@@ -1,3 +1,6 @@
+/* 
+Delets a Product in mongodb. Only allowed by users with admin role
+*/
 const ProductDB = require('../models/product.js');
 const Product = ProductDB.getModel();
 

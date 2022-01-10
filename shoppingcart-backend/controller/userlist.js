@@ -1,3 +1,6 @@
+/* 
+Gets list of users. Only used by users with admin role
+*/
 const UserDB = require('../models/user.js');
 const User = UserDB.getModel();
 

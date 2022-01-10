@@ -1,4 +1,7 @@
-
+/* 
+Creates an order from the shopping cart.
+Deletes the shopping cart object
+*/
 const CartDB = require('../models/cart.js');
 const OrderDB = require('../models/order.js');
 

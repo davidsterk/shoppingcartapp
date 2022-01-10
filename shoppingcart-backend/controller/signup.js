@@ -4,7 +4,12 @@ const AccountType = AccountTypeDB.getModel();
 const User = UserDB.getModel();
 const bcrypt = require('bcryptjs');
 
-
+/* 
+Sign up for user
+salts and hashes the password
+assigns the customer account tyoe
+returns the url location of the new user
+*/
 module.exports = async (req, res) => {
     try {
         let accountType = AccountType.findOne({accountTypeName: "customer"}).exec();

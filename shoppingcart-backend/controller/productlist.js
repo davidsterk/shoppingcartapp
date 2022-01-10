@@ -1,3 +1,7 @@
+/* 
+Searches a Product in mongodb. No role requirement
+Retrive product or list of products by id, name, price, and a search term
+*/
 const ProductDB = require('../models/product.js');
 const Product = ProductDB.getModel();
 
