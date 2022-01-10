@@ -1,3 +1,6 @@
+/*
+ input validation: verifies that values are not null, not an empty string if value is a string, or is numberic.
+*/
 module.exports = {
     
     validateInputString: (value, isRequired) => {

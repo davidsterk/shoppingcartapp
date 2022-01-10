@@ -1,3 +1,4 @@
+//Not currently in use
 const CartDB = require('../models/cart.js');
 const Cart = CartDB.getModel();
 

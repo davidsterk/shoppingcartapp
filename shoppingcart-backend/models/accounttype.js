@@ -1,5 +1,7 @@
+/*
+Model for Account type roles
+*/
 const mongoose = require('mongoose');
-
 const {dbUrl} = require("../config/project_env");
 
 let connection = null;

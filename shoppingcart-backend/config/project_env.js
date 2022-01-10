@@ -1,3 +1,4 @@
+//Module that reads the .env file
 require("dotenv").config()
 module.exports = {
     host:     process.env.DB_HOST,

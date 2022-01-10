@@ -2,6 +2,9 @@ const UserDB = require('../models/user');
 const User = UserDB.getModel();
 
 module.exports = {
+/*
+checkUserExists: for Registration, the email already exists, return status 400 otherwise continue to business layer
+*/
     checkUserExists: async (req, res, next) => {
         let email = req.body.email;
         let user;
@@ -19,7 +22,7 @@ module.exports = {
         next();
     },
 
-    verifyUserParameters: async (req, res, next) => {
+    verifyUserRegister: async (req, res, next) => {
         //TODO
     }
 }

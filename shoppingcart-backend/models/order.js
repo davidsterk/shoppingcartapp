@@ -1,3 +1,6 @@
+/*
+Model for orders. Stores the information from shoppingcart model after successful check out
+*/
 const mongoose = require('mongoose');
 
 const {dbUrl} = require("../config/project_env");

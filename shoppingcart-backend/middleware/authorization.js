@@ -1,3 +1,8 @@
+/*
+Authorization middleware
+--verify's jwt token
+--verify admin or customer role
+*/
 const UserDB = require('../models/user');
 const AccountTypeDB = require('../models/accounttype');
 const User = UserDB.getModel();
@@ -6,7 +11,11 @@ const {secretKey} = require("../config/project_env");
 const jwt = require('jsonwebtoken');
 
 module.exports = {
-
+/*
+VerifyToken: receives the JWT token from the request and verify's the token. If verified, then continues to the business layer
+Will not verify if token is expired
+returns next or 401 if unauthorized
+*/
     verifyToken: async (req, res, next) => {
         let token = req.headers.authorization;
         if(!token) {
@@ -37,7 +46,10 @@ module.exports = {
         }
 
     },
-
+/*
+isCustomer: Used the verify whether users with the customer role can access the resource
+returns next or status 401
+*/
     isCustomer: async (req, res, next) => {
         try {
             let user = await User.findById(req.userID).exec();
@@ -54,7 +66,10 @@ module.exports = {
             return;
         }
     },
-
+/*
+isAdmin: Used the verify whether users with the customer role can access the resource
+returns next or status 401
+*/
     isAdmin: async (req, res, next) => {
         try {
             let user = await User.findById(req.userID).exec();

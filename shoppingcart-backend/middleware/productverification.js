@@ -1,8 +1,15 @@
+/*
+Middleware to verify product inputs
+*/
 const ProductDB = require('../models/product.js');
 const Product = ProductDB.getModel();
 const validator = require('../utils/inputvalidation.js');
 
 module.exports = {
+/*
+checkProductExistsByID checks if the productID matches a product.
+Sends status 404 if not found otherwise sends the product object to the business layer
+*/
     checkProductExistsByID:  async (req, res, next) => {
         let productID = req.params.product_id || req.body.product_id;
         let product;
@@ -28,6 +35,11 @@ module.exports = {
             next();
         }
     },
+/*
+checkProductExistsByName checks if the name already exists for the product.
+If request method is PATCH/GET then if product does not exist return 404 otherwise return product
+If request method is POST then if product does not exist then go to business layer otherwise return 409 or 400
+*/
     checkProductExistsByName:  async (req, res, next) => {
         let productName = req.body.name || req.query.name;
         let product;
@@ -41,6 +53,7 @@ module.exports = {
                 return;
             }
         }
+        //get or update
         if (req.method == "PATCH" || req.method == "GET") {
             if(!product) {
                 res.status(404).json({message: "Unable to find Product"});
@@ -50,7 +63,7 @@ module.exports = {
                 res.product = product;
                 next();
             }
-            
+        //post = create new object
         } else if(req.method == "POST") {
             if(!product) {
                 next();
@@ -64,7 +77,11 @@ module.exports = {
             return;
         }
     },
-
+/*
+verifyProductParameters: verifys inputs for either product creation or product updates
+request method  = PATCH then update
+request methid = POSt then create
+*/
     verifyProductParameters: async (req, res, next) => {
         let name = req.body.name;
         let description = req.body.description

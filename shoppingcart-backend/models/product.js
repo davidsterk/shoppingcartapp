@@ -1,3 +1,6 @@
+/*
+Model for products.
+*/
 const mongoose = require('mongoose');
 
 const {dbUrl} = require("../config/project_env");

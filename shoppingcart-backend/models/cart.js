@@ -1,3 +1,6 @@
+/*
+Model for shopping cart. 
+*/
 const mongoose = require('mongoose');
 
 const {dbUrl} = require("../config/project_env");

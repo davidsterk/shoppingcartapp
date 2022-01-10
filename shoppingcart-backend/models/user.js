@@ -1,3 +1,6 @@
+/*
+Model for Users (customers and admins)
+*/
 const mongoose = require('mongoose');
 
 const {dbUrl} = require("../config/project_env");
