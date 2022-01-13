@@ -1,13 +1,15 @@
-//Script to initialize mongo database with starting values
+const UserDB = require('../models/user.js');
 const ProductDB = require('../models/product.js');
 const CartDB = require('../models/cart.js');
 const OrderDB = require('../models/order.js');
 const AccountTypeDB = require('../models/accounttype.js');
 
+const User = UserDB.getModel();
 const Product = ProductDB.getModel();
 const Cart = CartDB.getModel();
 const Order = OrderDB.getModel();
 const AccountType = AccountTypeDB.getModel();
+const bcrypt = require('bcryptjs');
 
 
 (async() => {
@@ -26,7 +28,35 @@ const AccountType = AccountTypeDB.getModel();
 
     let accountType2 = new AccountType({
         accountTypeName: 'admin'
-        }); 
+        });
+        
+//create sample users records
+    let salt = await bcrypt.genSalt(10);
+	let user1 = new User({
+        email: 'johnsmith@test.org', 
+        password: await bcrypt.hash('1234', salt),
+        firstName:'John',
+        lastName:'Smith',
+        address: {
+            street: '123 Main Street',
+            city: 'Boston',
+            state: 'Massachusetts',
+            zip: 01234
+        }
+	}); 
+
+	let user2 = new User({
+        email: 'joebrown@test.org', 
+        password: await bcrypt.hash('1234', salt),
+        firstName:'Joe',
+        lastName:'Brown',
+        address: {
+            street: '321 Main Street',
+            city: 'Boston',
+            state: 'Massachusetts',
+            zip: 54321
+        }
+    }); 
     
     
 //create products
@@ -82,22 +112,15 @@ let product6 = new Product({
             product3.save(),
             product4.save(),
             product5.save(),
-            product6.save(), 
+            product6.save(),
+
+            user1.accountType = accountType1._id,
+            user2.accountType = accountType2._id,
+            user1.save(),
+            user2.save(), 
 		]);
 
 
 	process.exit();
 
 })();
-
-
-
-
-
-
-
-
-
-
-
-
