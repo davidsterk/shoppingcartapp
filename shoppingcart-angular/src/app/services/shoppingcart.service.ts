@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product} from '../services/product';
-import backendServer from 'config/project_env';
+import env from 'config/project_env';
 
 @Injectable({
   providedIn: 'root'
@@ -71,17 +71,17 @@ export class ShoppingcartService {
   }
 
   getMemberCart(): Observable<any> {
-    let url: string = `http://${backendServer}/api/cart/cart`;
+    let url: string = `http://${env.backendServer}/api/cart/cart`;
     return this.http.get(url);
   }
 
   addMemberCart(product: Product): Observable<any> {
-    let url: string = `http://${backendServer}/api/cart/additem`;
+    let url: string = `http://${env.backendServer}/api/cart/additem`;
     return this.http.post(url, {product_id: product.id, quantity_requested: product.quantityOrdered});
   }
 
   updateMemberCartUpdate(product: any): Observable<any> {
-    let url: string = `http://${backendServer}/api/cart/update`;
+    let url: string = `http://${env.backendServer}/api/cart/update`;
     return this.http.post(url, {product_id: product.id, quantity_requested: product.quantityRequested});
   }
 

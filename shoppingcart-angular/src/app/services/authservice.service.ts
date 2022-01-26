@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from "rxjs/operators";
 import { UsermanagementService } from './usermanagement.service';
 import { BYPASS_AUTH } from './authinterceptor.service';
-import backendServer from 'config/project_env';
+import env from 'config/project_env';
 
 
 @Injectable({
@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   loginUser(email: string, password: string): Observable<any> {
-    let url = `http://${backendServer}/api/user/signin`;
+    let url = `http://${env.backendServer}/api/user/signin`;
     return this.http.post(url, {email: email, password: password},{context: new HttpContext().set(BYPASS_AUTH, true)}).pipe(
       tap((res: any) => {
           this.storeSession(res);
@@ -48,7 +48,7 @@ export class AuthService {
   }
 
   register(form: any): Observable<any> {
-    let url = `http://${backendServer}/api/user/signup`;
+    let url = `http://${env.backendServer}/api/user/signup`;
     return this.http.post(url, {email: form.email, password: form.password, firstname: form.firstName, lastname: form.lastName},{context: new HttpContext().set(BYPASS_AUTH, true)})
   }
 }
