@@ -1,0 +1,30 @@
+<div id="cart">
+
+    <h3 *ngIf = "(!cart)">Cart is Empty</h3>
+
+    <table  *ngIf = "(cart != null)">
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Line Total</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr *ngFor="let product of cart">
+            <td>{{product.name}}</td>
+                <td><input type="number" min=0 [(ngModel)]="product.quantityRequested"></td>
+                <td>{{product.price | currency}}</td>
+                <td>{{product.price * product.quantityRequested | currency}}</td>
+                <td><button [disabled]="product.quantityOrdered == product.quantityRequested" (click)="checkProduct(product)">Update</button></td>
+                <td>{{product.message}}</td>
+        </tr>
+    </table>
+    <br>
+    <div *ngIf = "(cart != null)">Total in Cart: {{cartTotal() | currency}}</div>
+    <br>
+    <button *ngIf="(hasSession) && cart" (click)="submit()">Submit Order</button>
+    <button *ngIf=(!hasSession) routerLink="/login">Login</button>
+    <br>
+    <h2 *ngIf=(orderID)>Order ID: {{orderID}} Submitted Successfully</h2>
+</div>
